@@ -7,10 +7,12 @@ function App() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  const API_URL = "https://posts-app-pi-ivory.vercel.app";
+
   // traer posts
   const fetchPosts = async () => {
     try {
-      const response = await fetch("http://localhost:3000/posts");
+      const response = await fetch(`${API_URL}/posts`);
       const data = await response.json();
       setPosts(data);
     } catch (error) {
@@ -23,7 +25,7 @@ function App() {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:3000/posts", {
+      await fetch(`${API_URL}/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +52,7 @@ function App() {
   // eliminar post
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:3000/posts/${id}`, {
+      await fetch(`${API_URL}/posts/${id}`, {
         method: "DELETE",
       });
 
